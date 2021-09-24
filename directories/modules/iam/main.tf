@@ -1,28 +1,28 @@
-resource "aws_iam_user" "s3_user" {
+resource "aws_iam_user" "user" {
   name = var.name
   tags = {
     environment = var.environment
   }
 }
 
-resource "aws_iam_access_key" "s3_user_key" {
-  user = aws_iam_user.s3_user.name
+resource "aws_iam_access_key" "user" {
+  user = aws_iam_user.user.name
 }
 
-resource "aws_iam_user_policy" "s3_user_policy" {
+resource "aws_iam_user_policy" "user_policy" {
   name = "read_access"
-  user = aws_iam_user.s3_user.name
+  user = aws_iam_user.user.name
 
   policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "PublicReadGetObject",
+      "Sid": "S3BucketFullAccess",
       "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${var.bucket}/*"
+      
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::appstellar-terraform-workshop-*"
     }
   ]
 }
