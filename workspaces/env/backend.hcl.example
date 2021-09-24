@@ -1,0 +1,4 @@
+    workspaces { prefix = "terraform-aws-workshop-infra-env-" }
+    hostname     = "app.terraform.io"
+    organization = "appstellar-terraform-aws-workshop"
+    token        = ""
