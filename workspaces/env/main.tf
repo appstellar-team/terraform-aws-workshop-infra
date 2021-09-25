@@ -10,3 +10,13 @@ module "bucket" {
     environment = var.environment
   }
 }
+
+
+module "bucket" {
+  source      = "../../modules/s3"
+  name                    = format("%s-%s-sample", var.bucket_name, var.environment)
+  tags                    =  {
+    environment = var.environment
+    author = "tali"
+  }
+}
