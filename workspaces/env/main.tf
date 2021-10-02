@@ -20,3 +20,12 @@ module "bucket_two" {
     author      = "tali"
   }
 }
+
+module "bucket_three" {
+  source = "../../modules/s3"
+  name   = format("%s-%s-tali", var.bucket_name, var.environment)
+  tags = {
+    environment = var.environment
+    author      = "tali"
+  }
+}
